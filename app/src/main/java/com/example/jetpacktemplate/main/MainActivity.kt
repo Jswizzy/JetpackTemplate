@@ -2,10 +2,13 @@ package com.example.jetpacktemplate.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.jetpacktemplate.R
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.jetpacktemplate.databinding.ActivityMainBinding
+import com.example.jetpacktemplate.util.EventHandler
+import com.example.jetpacktemplate.util.snackbar
 
 /**
  * Show layout.activity_main and setup data binding.
@@ -17,7 +20,7 @@ class MainActivity : AppCompatActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         val viewModel = ViewModelProviders
             .of(this)
@@ -25,8 +28,10 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.title.observe(this, Observer { value ->
             value?.let {
-                mainTextView.text = it
+                binding.title = it
             }
         })
+
+        binding.handler = EventHandler(this)
     }
 }

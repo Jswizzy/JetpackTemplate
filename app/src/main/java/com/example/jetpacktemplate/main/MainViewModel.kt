@@ -23,10 +23,10 @@ class MainViewModel : ViewModel() { //private val repository: Repository
         //val FACTORY = singleArgViewModelFactory(::MainViewModel)
     }
 
-    val title = MutableLiveData<String>()
+    val title = MutableLiveData<Title>()
 
     init {
-        title.value = "Hello LiveData"
+        title.value = Title("Hello")
     }
 
 }

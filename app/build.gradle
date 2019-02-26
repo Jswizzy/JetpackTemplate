@@ -22,6 +22,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -47,6 +50,9 @@ dependencies {
     // Work Manager for periodic background tasks
     def work_version = "1.0.0-rc02"
     implementation "android.arch.work:work-runtime:$work_version"
+
+    // DataBinding
+    kapt "com.android.databinding:compiler:$kotlin_version"
 
     implementation 'androidx.appcompat:appcompat:1.1.0-alpha02'
     implementation 'com.google.android.material:material:1.1.0-alpha03'
